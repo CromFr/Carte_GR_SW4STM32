@@ -3,6 +3,7 @@
 #include <mutex>
 #include <cassert>
 #include <cstring>
+#include <algorithm>
 
 namespace goldobot {
 
