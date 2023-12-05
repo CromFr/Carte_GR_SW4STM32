@@ -135,7 +135,7 @@ void IODevice::execute(IORequestTmp req, uint32_t timeout) {
     if (rx_request.state != IORequestState::Busy && tx_request.state != IORequestState::Busy) {
       return;
     }
-    if (timeout != -1 && xTaskGetTickCount() > tick_count_timeout) {
+    if (timeout != (uint32_t)-1 && xTaskGetTickCount() > tick_count_timeout) {
       rx_functions->abort_request(&rx_request, device_index);
       tx_functions->abort_request(&tx_request, device_index);
       return;

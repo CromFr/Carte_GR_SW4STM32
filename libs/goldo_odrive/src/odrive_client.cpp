@@ -222,7 +222,7 @@ bool ODriveClient::processResponse(uint32_t timestamp, sequence_number_t seq, ui
         m_axis_requests[axis].seq_numbers[req_id] = 0;
         m_axis_requests[axis].read_pending_flags &=
             0xffffffff - (1 << static_cast<uint8_t>(req_id));
-        uint8_t latency = (uint8_t)timestamp - m_axis_requests[axis].req_timestamps[req_id];
+        // uint8_t latency = (uint8_t)timestamp - m_axis_requests[axis].req_timestamps[req_id];
         processReadResponse(axis, (AxisRequestId)req_id, payload);
       }
     } else {
@@ -230,8 +230,8 @@ bool ODriveClient::processResponse(uint32_t timestamp, sequence_number_t seq, ui
         m_axis_requests[axis].write_seq_numbers[req_id] = 0;
         m_axis_requests[axis].write_pending_flags &=
             0xffffffff - (1 << static_cast<uint8_t>(req_id));
-        uint8_t latency = (uint8_t)timestamp - m_axis_requests[axis].write_req_timestamps[req_id];
-        int a = 0;
+        // uint8_t latency = (uint8_t)timestamp -
+        //   m_axis_requests[axis].write_req_timestamps[req_id];
       }
     }
   }

@@ -197,7 +197,7 @@ void UARTCommTask::sendStatistics() {
 
   m_out_prio_queue.push_message(CommMessageType::UartCommTaskStatistics,
                                 (unsigned char*)&m_statistics, sizeof(m_statistics));
-  memset(&m_statistics, 0, sizeof(m_statistics));
+  memset((void*)&m_statistics, 0, sizeof(m_statistics));
 
   // HeapStats_t heap_stats;
   //       vPortGetHeapStats(&heap_stats);

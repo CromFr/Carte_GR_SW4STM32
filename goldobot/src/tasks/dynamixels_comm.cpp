@@ -24,7 +24,7 @@ unsigned char* g_dynamixels_buff;
 size_t g_dynamixels_bytes_received{0};
 
 bool goldo_dynamixels_callback(hal::IORequestTmp* req, hal::IORequestTmpStatus status) {
-  auto& dynamixels_task = *reinterpret_cast<DynamixelsCommTask*>(req->userdata);
+  // auto& dynamixels_task = *reinterpret_cast<DynamixelsCommTask*>(req->userdata);
   switch (g_dynamixels_parse_state) {
     case DynamixelParseState::Transmit:
       goldobot::hal::gpio_set(31, true);
@@ -107,7 +107,7 @@ bool DynamixelsCommTask::regWrite(uint8_t id, uint8_t address, uint8_t* buffer, 
 void DynamixelsCommTask::action() { transmitPacket(0xFE, DynamixelCommand::Action, nullptr, 0); }
 
 void DynamixelsCommTask::processMessage() {
-  auto message_size = m_message_queue.message_size();
+  // auto message_size = m_message_queue.message_size();
   switch (m_message_queue.message_type()) {
     case CommMessageType::DynamixelsRequest: {
       onRequest();
@@ -121,8 +121,6 @@ void DynamixelsCommTask::processMessage() {
 }
 
 void DynamixelsCommTask::onRequest() {
-  unsigned char buff[3];
-  unsigned char data_read[64];
   auto message_size = m_message_queue.message_size();
   m_message_queue.pop_message(m_scratchpad, 256);
   // uint16_t sequence_id, uint8_t protocol version, uint8_t flags, payload
@@ -130,7 +128,7 @@ void DynamixelsCommTask::onRequest() {
   uint16_t sequence_id = *reinterpret_cast<uint16_t*>(m_scratchpad);
   uint8_t proto_version = m_scratchpad[2];
   uint8_t _id = m_scratchpad[3];
-  uint8_t num_parameters = (uint8_t)m_scratchpad[5];
+  // uint8_t num_parameters = (uint8_t)m_scratchpad[5];
   m_response_ok = true;
   transmitPacket(m_scratchpad[3], (DynamixelCommand)m_scratchpad[4], &m_scratchpad[5],
                  message_size - 5);
@@ -215,14 +213,14 @@ void DynamixelsCommTask::transmitPacket(uint8_t id, DynamixelCommand command, ui
     m_response_num_parameters = len - 2;  // response = error + parameters + crc
 
     // check that length is matching
-    if (g_dynamixels_bytes_received != len + 4) {
+    if (g_dynamixels_bytes_received != len + 4ull) {
       m_response_ok = false;
       return;
     }
 
     // check checksum
     uint8_t rx_checksum = 0;
-    for (unsigned i = 2; i < len + 3; i++) {
+    for (unsigned i = 2; i < len + 3u; i++) {
       rx_checksum += m_dynamixels_buffer[i];
     }
     rx_checksum = ~rx_checksum;
@@ -256,7 +254,7 @@ DynamixelStatusError DynamixelsCommTask::receivePacket() {
       m_dynamixels_receive_params = m_dynamixels_buffer + 5;
 
       uint8_t checksum = 0;
-      for (unsigned i = 2; i < 5 + m_dynamixels_receive_num_parameters; i++) {
+      for (unsigned i = 2; i < 5u + m_dynamixels_receive_num_parameters; i++) {
         checksum += m_dynamixels_buffer[i];
       }
       checksum = ~checksum;

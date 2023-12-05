@@ -58,7 +58,7 @@ size_t ODriveStreamParser::pushData(uint8_t* buffer, size_t size) {
       } break;
       case State::ReadPayload: {
         size_t bytes_to_read = size - idx;
-        if (bytes_to_read + m_bytes_read > m_packet_length + 2) {
+        if (bytes_to_read + m_bytes_read > m_packet_length + 2llu) {
           bytes_to_read = m_packet_length + 2 - m_bytes_read;
         }
         std::memcpy(m_packet_body + m_bytes_read, buffer + idx, bytes_to_read);
@@ -80,6 +80,8 @@ size_t ODriveStreamParser::pushData(uint8_t* buffer, size_t size) {
         }
         break;
       }
+      case State::PacketReady:
+        break;
     }
   }
   m_statistics.bytes_received += idx;

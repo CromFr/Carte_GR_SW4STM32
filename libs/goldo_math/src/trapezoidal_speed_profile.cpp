@@ -90,7 +90,7 @@ float TrapezoidalSpeedProfile::begin_time() { return m_t[0]; }
 float TrapezoidalSpeedProfile::end_time() { return m_t[3]; }
 
 void TrapezoidalSpeedProfile::compute(float t, float* val, float* deriv, float* accel) {
-  int index = 0;
+  size_t index = 0;
 
   while (index + 1 < m_num_points && t > m_t[index + 1]) {
     index++;

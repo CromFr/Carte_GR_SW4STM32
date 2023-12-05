@@ -210,7 +210,7 @@ void PropulsionController::updateTargetPositions() {
 
 void PropulsionController::updateTargetYaw() {
   float parameter = m_speed_controller.parameter();
-  float speed = m_speed_controller.speed();
+  // float speed = m_speed_controller.speed();
   m_target_pose.yaw = clampAngle(m_begin_yaw + parameter * m_rotation_direction);
 }
 

@@ -147,6 +147,7 @@ void hal_uart_callback(int uart_index, int callback_id) {
     case 3:  // rx idle interrupt
     {
       int a = 1;
+      (void)a;
     } break;
     default:
       break;

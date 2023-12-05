@@ -488,9 +488,9 @@ void PropulsionTask::onCommandEnd() {
   Robot::instance().mainExchangeOutPrio().pushMessage(CommMessageType::PropulsionCommandEvent, buff,
                                                       4);
   m_is_executing_command = false;
-  if (m_controller.state() == PropulsionController::State::Error) {
-    int a = 1;
-  }
+  // if (m_controller.state() == PropulsionController::State::Error) {
+  //   int a = 1;
+  // }
 }
 
 void PropulsionTask::onCommandCancel(uint16_t sequence_number) {

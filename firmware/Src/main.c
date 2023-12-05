@@ -77,6 +77,15 @@ void prvGetRegistersFromStack(uint32_t *pulFaultStackAddress) {
   pc = pulFaultStackAddress[6];
   psr = pulFaultStackAddress[7];
 
+  (void)r0;
+  (void)r1;
+  (void)r2;
+  (void)r3;
+  (void)r12;
+  (void)lr;
+  (void)pc;
+  (void)psr;
+
   /* When the following line is hit, the variables contain the register values. */
   for (;;)
     ;

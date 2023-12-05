@@ -21,8 +21,8 @@ unsigned char __attribute__((section(".ccmram"))) ODriveCommTask::s_scratchpad[1
 
 ODriveCommTask::ODriveCommTask()
     : m_message_queue(s_message_queue_buffer, sizeof(s_message_queue_buffer)),
-      m_stream_writer(s_write_buffer, sizeof(s_write_buffer)),
-      m_stream_parser(s_parse_buffer, sizeof(s_parse_buffer)) {}
+      m_stream_parser(s_parse_buffer, sizeof(s_parse_buffer)),
+      m_stream_writer(s_write_buffer, sizeof(s_write_buffer)) {}
 
 const char* ODriveCommTask::name() const { return "odrive_comm"; }
 

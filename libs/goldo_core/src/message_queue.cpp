@@ -68,7 +68,6 @@ MessageQueue::Statistics MessageQueue::statistics() {
 }
 
 void MessageQueue::read_data(size_t start_index, unsigned char* buffer, size_t size) {
-  size_t i = 0;
   size_t idx = start_index;
   size_t idx_end = start_index + size;
 

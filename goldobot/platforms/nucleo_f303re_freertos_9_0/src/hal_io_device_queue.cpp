@@ -124,7 +124,8 @@ size_t IODeviceQueue::map_push_2(uint8_t** buffer, uint8_t* head) {
     tail = m_buffer_end;
   }
 
-  auto buffer_size = m_buffer_end - m_buffer;
+  assert(m_buffer_end >= m_buffer);
+  size_t buffer_size = m_buffer_end - m_buffer;
   auto last_quarter = m_buffer + buffer_size * 3 / 4;
 
   *buffer = head;

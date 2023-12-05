@@ -92,7 +92,7 @@ bool SequenceEngine::execOp(const Op& op) {
       return true;
     case 65:  // propulsion.enable
     {
-      uint8_t b = true;
+      // uint8_t b = true;
       // m_exchange_commands->pushMessage(CommMessageType::DbgSetPropulsionEnable, (unsigned
       // char*)&b,
       //                                 1);
@@ -106,7 +106,7 @@ bool SequenceEngine::execOp(const Op& op) {
       return true;
     case 67:  // propulsion.disable
     {
-      uint8_t b = false;
+      // uint8_t b = false;
       // Robot::instance().mainExchangeIn().pushMessage(CommMessageType::DbgSetPropulsionEnable,
       //                                               (unsigned char*)&b, 1);
       m_propulsion_state_dirty = true;
@@ -142,12 +142,12 @@ bool SequenceEngine::execOp(const Op& op) {
       return true;
     case 128:  // propulsion.point_to
     {
-      float params[5];
-      params[0] = *(float*)(m_vars + 4 * op.arg1);
-      params[1] = *(float*)(m_vars + 4 * (op.arg1 + 1));
-      params[2] = *(float*)(m_vars + 4 * (op.arg2));
-      params[3] = *(float*)(m_vars + 4 * (op.arg2 + 1));
-      params[4] = *(float*)(m_vars + 4 * (op.arg2 + 2));
+      // float params[5];
+      // params[0] = *(float*)(m_vars + 4 * op.arg1);
+      // params[1] = *(float*)(m_vars + 4 * (op.arg1 + 1));
+      // params[2] = *(float*)(m_vars + 4 * (op.arg2));
+      // params[3] = *(float*)(m_vars + 4 * (op.arg2 + 1));
+      // params[4] = *(float*)(m_vars + 4 * (op.arg2 + 2));
       //  m_exchange_commands->pushMessage(CommMessageType::DbgPropulsionExecutePointTo,
       //                                  (unsigned char*)params, sizeof(params));
     }
@@ -156,13 +156,12 @@ bool SequenceEngine::execOp(const Op& op) {
       return false;
     case 129:  // propulsion.move_to
     {
-      float params[5];
-      params[0] = *(float*)(m_vars + 4 * op.arg1);
-      params[1] = *(float*)(m_vars + 4 * (op.arg1 + 1));
-      params[2] = *(float*)(m_vars + 4 * (op.arg2));
-      params[3] = *(float*)(m_vars + 4 * (op.arg2 + 1));
-      params[4] = *(float*)(m_vars + 4 * (op.arg2 + 2));
-
+      // float params[5];
+      // params[0] = *(float*)(m_vars + 4 * op.arg1);
+      // params[1] = *(float*)(m_vars + 4 * (op.arg1 + 1));
+      // params[2] = *(float*)(m_vars + 4 * (op.arg2));
+      // params[3] = *(float*)(m_vars + 4 * (op.arg2 + 1));
+      // params[4] = *(float*)(m_vars + 4 * (op.arg2 + 2));
       // m_exchange_commands->pushMessage(CommMessageType::DbgPropulsionExecuteMoveTo,
       //                                  (unsigned char*)params, sizeof(params));
       m_propulsion_state_dirty = true;
@@ -187,12 +186,11 @@ bool SequenceEngine::execOp(const Op& op) {
     }
     case 130:  // propulsion.rotate
     {
-      float params[4];
-      params[0] = *(float*)(m_vars + 4 * op.arg1);
-      params[1] = *(float*)(m_vars + 4 * (op.arg2));
-      params[2] = *(float*)(m_vars + 4 * (op.arg2 + 1));
-      params[3] = *(float*)(m_vars + 4 * (op.arg2 + 2));
-
+      // float params[4];
+      // params[0] = *(float*)(m_vars + 4 * op.arg1);
+      // params[1] = *(float*)(m_vars + 4 * (op.arg2));
+      // params[2] = *(float*)(m_vars + 4 * (op.arg2 + 1));
+      // params[3] = *(float*)(m_vars + 4 * (op.arg2 + 2));
       // m_exchange_commands->pushMessage(CommMessageType::DbgPropulsionExecuteRotation,
       //                                (unsigned char*)params, sizeof(params));
       m_propulsion_state_dirty = true;
@@ -214,9 +212,9 @@ bool SequenceEngine::execOp(const Op& op) {
     }
     case 132:  // propulsion.reposition
     {
-      float params[2];
-      params[0] = *(float*)(m_vars + 4 * op.arg1);
-      params[1] = *(float*)(m_vars + 4 * (op.arg2));
+      // float params[2];
+      // params[0] = *(float*)(m_vars + 4 * op.arg1);
+      // params[1] = *(float*)(m_vars + 4 * (op.arg2));
       // m_exchange_commands->pushMessage(CommMessageType::DbgPropulsionExecuteReposition,
       //                                  (unsigned char*)params, sizeof(params));
       m_propulsion_state_dirty = true;
@@ -274,9 +272,8 @@ bool SequenceEngine::execOp(const Op& op) {
     }
     case 138:  // propulsion.set_adversary_detection_enable
     {
-      unsigned char buff;
-      buff = op.arg1;
-
+      // unsigned char buff;
+      // buff = op.arg1;
       //   m_exchange_commands->pushMessage(CommMessageType::PropulsionSetAdversaryDetectionEnable,
       //                                  &buff, 1);
     }
@@ -294,8 +291,8 @@ bool SequenceEngine::execOp(const Op& op) {
     case 147:  // propulsion.measure_point
     {
       // arg: vector(border normal angle, projection of border point on normal
-      float buff[4] = {get_var_float(op.arg1), get_var_float(op.arg1 + 1), get_var_float(op.arg2),
-                       get_var_float(op.arg2 + 1)};
+      // float buff[4] = {get_var_float(op.arg1), get_var_float(op.arg1 + 1),
+      //                  get_var_float(op.arg2), get_var_float(op.arg2 + 1)};
       // m_exchange_commands->pushMessage(CommMessageType::PropulsionMeasurePoint,
       //                                 (unsigned char*)&buff, sizeof(buff));
       m_pc++;
@@ -469,20 +466,19 @@ void SequenceEngine::endLoad() {
 
   // check crc
   // uint16_t crc = update_crc16(m_buffer + 4, header->size, 0);
-  uint16_t crc = 0;
-  if (crc == header->crc16) {
-    unsigned char buff[1];
-    buff[0] = 1;
-    //  Robot::instance().mainExchangeOut().pushMessage(CommMessageType::MainSequenceLoadStatus,
-    //  buff,
-    //                                                    1);
-  } else {
-    unsigned char buff[1];
-    buff[0] = 0;
-    // Robot::instance().mainExchangeOut().pushMessage(CommMessageType::MainSequenceLoadStatus,
-    // buff,
-    //                                                1);
-  }
+  // if (crc == header->crc16) {
+  //   unsigned char buff[1];
+  //   buff[0] = 1;
+  //   //  Robot::instance().mainExchangeOut().pushMessage(CommMessageType::MainSequenceLoadStatus,
+  //   //  buff,
+  //   //                                                    1);
+  // } else {
+  //   unsigned char buff[1];
+  //   buff[0] = 0;
+  //   // Robot::instance().mainExchangeOut().pushMessage(CommMessageType::MainSequenceLoadStatus,
+  //   // buff,
+  //   //                                                1);
+  // }
   m_num_vars = header->num_vars;
   m_num_seqs = header->num_seqs;
   m_vars = m_buffer + sizeof(SequenceHeader);
